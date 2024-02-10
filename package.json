@@ -18,6 +18,7 @@
     "expo-application": "~5.8.3",
     "expo-auth-session": "~5.4.0",
     "expo-crypto": "~12.8.0",
+    "expo-dev-client": "~3.3.8",
     "expo-font": "~11.10.2",
     "expo-status-bar": "~1.11.1",
     "expo-system-ui": "^2.9.3",
