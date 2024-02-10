@@ -12,5 +12,6 @@ npm / yarn install
 npx expo prebuild
 npx expo run:android / run:ios
 ```
+or install app-debug.apk from releases, open the app on phone, run the server by `npx expo start` and pick the server from app (similar to Expo go).
 
-**Note**: You need to run `npx expo prebuild` before running the project for the first time or after adding a new package to the project. Other than that it can be skipped.
+**Note**: You need to run `npx expo prebuild` before running the project for the first time or after adding a new package to the project. Other than that it can be skipped. When using app-debug.apk, both server and the device runing app must be on the same network.
