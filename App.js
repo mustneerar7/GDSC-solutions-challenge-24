@@ -7,6 +7,7 @@ import { StatusBar } from "expo-status-bar";
 import { LoginStack } from "./navigators/LoginStack";
 
 export default function App() {
+
   return (
     <NavigationContainer>
       <LoginStack />
