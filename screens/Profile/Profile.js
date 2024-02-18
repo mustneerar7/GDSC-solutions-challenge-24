@@ -9,6 +9,8 @@ import { auth } from "../../configs/firebase";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
+import styles from "../../configs/styles";
+
 const Profile = ({ navigation }) => {
   const [currentUser, setCurrentUser] = React.useState(null);
 
@@ -42,7 +44,7 @@ const Profile = ({ navigation }) => {
 
   // Presentation
   return (
-    <View style={styles.container}>
+    <View style={profileStyles.container}>
       {currentUser && (
         <Image
           style={{
@@ -54,10 +56,10 @@ const Profile = ({ navigation }) => {
           source={{ uri: currentUser ? currentUser.photoURL : null }}
         />
       )}
-      <Text style={styles.headline}>
+      <Text style={styles.typography.h2}>
         {currentUser ? currentUser.displayName : "No user info"}
       </Text>
-      <Text style={styles.body}>
+      <Text style={styles.typography.body}>
         {currentUser ? currentUser.email : "No user info"}
       </Text>
       <Button title="Logout" onPress={handleLogout} />
@@ -66,21 +68,12 @@ const Profile = ({ navigation }) => {
   );
 };
 
-const styles = StyleSheet.create({
+const profileStyles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#F1E0CE",
     alignItems: "center",
     justifyContent: "center",
-  },
-  headline: {
-    fontSize: 20,
-    textAlign: "center",
-  },
-  body: {
-    fontSize: 14,
-    textAlign: "center",
-    marginBottom: 20,
   },
 });
 
