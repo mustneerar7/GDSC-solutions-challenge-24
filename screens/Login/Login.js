@@ -1,6 +1,15 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { ActivityIndicator, Button, StyleSheet, View } from "react-native";
+import {
+  ActivityIndicator,
+  Button,
+  Text,
+  View,
+  Image,
+  TouchableOpacity,
+  Pressable,
+  Animated,
+} from "react-native";
 
 import * as Google from "expo-auth-session/providers/google";
 import * as WebBrowser from "expo-web-browser";
@@ -14,6 +23,8 @@ import { auth } from "../../configs/firebase";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
+import styles from "../../configs/styles";
+
 // Initialize WebBrowser for use with AuthSession
 WebBrowser.maybeCompleteAuthSession();
 
@@ -26,6 +37,8 @@ const Login = ({ navigation }) => {
     androidClientId:
       "895582229811-hq8noqn6djio57i36lciotdkp52tunra.apps.googleusercontent.com",
   });
+
+  const fadeInAnim = React.useRef(new Animated.Value(0)).current;
 
   // Hide the header
   React.useLayoutEffect(() => {
@@ -85,26 +98,81 @@ const Login = ({ navigation }) => {
     checkUser();
   }, []);
 
+  // Animation configuration
+  React.useEffect(() => {
+    Animated.timing(fadeInAnim, {
+      toValue: 1,
+      duration: 1000,
+      useNativeDriver: true,
+      delay: 500,
+    }).start();
+  }, [fadeInAnim]);
+
   // Presentation
   return (
-    <View style={styles.container}>
+    <Animated.View style={[styles.container, { opacity: fadeInAnim }]}>
+      <Animated.Text style={[styles.typography.h1, { opacity: fadeInAnim }]}>
+        Swap, Replace & Reduce waste
+      </Animated.Text>
+
+      <Animated.View
+        style={{
+          alignItems: "center",
+          opacity: fadeInAnim,
+        }}
+      >
+        <Animated.Image
+          style={{
+            width: 160,
+            height: 160,
+            opacity: fadeInAnim,
+          }}
+          source={require("../../assets/barterbox.png")}
+        />
+
+        <Animated.Text style={[styles.typography.h2, { opacity: fadeInAnim }]}>
+          Barter box
+        </Animated.Text>
+      </Animated.View>
+
+      <Animated.Text style={[styles.typography.h4, { opacity: fadeInAnim }]}>
+        Signin or login with Google to start bartering
+      </Animated.Text>
+
       {!loading ? (
-        <Button title="Login" onPress={() => promptAsync()} />
+        <Animated.View
+          style={[styles.buttons.large, { opacity: fadeInAnim }]}
+        >
+          <Pressable
+            title="Login"
+            style={styles.buttons.large}
+            onPress={() => promptAsync()}
+          >
+            <Animated.Image
+              source={require("../../assets/google_logo.png")}
+              style={{
+                width: 24,
+                height: 24,
+                marginRight: 8,
+                opacity: fadeInAnim,
+              }}
+            />
+            <Animated.Text
+              style={[
+                styles.typography.h3,
+                { color: "white", opacity: fadeInAnim },
+              ]}
+            >
+              Login with Google
+            </Animated.Text>
+          </Pressable>
+        </Animated.View>
       ) : (
         <ActivityIndicator size="large" color="#0000ff" />
       )}
       <StatusBar style="auto" />
-    </View>
+    </Animated.View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
 
 export { Login };
