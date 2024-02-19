@@ -43,7 +43,7 @@ export default StyleSheet.create({
       padding: 16,
       borderRadius: 30,
       width: "80%",
-      height: 50,
+      height: 56,
       alignItems: "center",
       justifyContent: "center",
       flexDirection: "row",

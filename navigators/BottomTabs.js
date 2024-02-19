@@ -18,6 +18,7 @@ const BottomTabs = () => {
         tabBarActiveTintColor: "#865012",
         tabBarInactiveTintColor: "grey",
         tabBarShowLabel: false,
+        tabBarHideOnKeyboard: true,
       }}
     >
       {/* <Tab.Screen name="Exchange" component={Exchange} /> */}
