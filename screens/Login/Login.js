@@ -88,7 +88,7 @@ const Login = ({ navigation }) => {
       if (user) {
         navigation.reset({
           index: 0,
-          routes: [{ name: "BottomTabs" }],
+          routes: [{ name: "Choice" }],
         });
       } else {
         setLoading(false);
