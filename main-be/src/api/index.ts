@@ -1,8 +1,8 @@
 import express from "express";
 const router = express.Router();
 
-import listingService from "./services/listings";
+import userService from "./services/users";
 
-router.use("/listing", listingService.router);
+router.use("/user", userService.router);
 
 export default router;
