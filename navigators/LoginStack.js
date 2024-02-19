@@ -7,6 +7,7 @@ import { Login } from "../screens/Login/Login";
 
 // Bottom Tabs component.
 import { BottomTabs } from "./BottomTabs";
+import { Choice } from "../screens/Choice/Choice";
 
 const Stack = createStackNavigator();
 
@@ -15,6 +16,7 @@ const LoginStack = () => {
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       {/* <Stack.Screen name="Onboard" component={Onboard} /> */}
       <Stack.Screen name="Login" component={Login} />
+      <Stack.Screen name="Choice" component={Choice}/>
       <Stack.Screen name="BottomTabs" component={BottomTabs} />
       <Stack.Screen name="Exchange" component={Exchange} />
     </Stack.Navigator>

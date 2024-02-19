@@ -9,11 +9,11 @@ const Choice = () => {
   const navigation = useNavigation();
 
   const handleOption1Press = () => {
-    navigation.navigate(""); 
+    navigation.navigate("Exchange"); 
   };
 
   const handleOption2Press = () => {
-    navigation.navigate(""); 
+    navigation.navigate("BottomTabs"); 
   };
 
   return (
