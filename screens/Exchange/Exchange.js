@@ -1,9 +1,29 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { Image, ScrollView, Text, TextInput, TouchableOpacity, View} from "react-native";
 import styles from "../../configs/styles";
+import { useState } from "react";
+import * as ImagePicker from "expo-image-picker";
 
 const Exchange = () => {
+  const [image, setImage] = useState(null);
+
+  const pickImage = async () => {
+    // No permissions request is necessary for launching the image library
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    console.log(result);
+
+    if (!result.canceled) {
+      setImage(result.assets[0].uri);
+    }
+  };
+
   return (
     <ScrollView contentContainerStyle={inlineStyles.container}>
       <View style={inlineStyles.headerContainer}>
@@ -18,11 +38,15 @@ const Exchange = () => {
       <Text style={inlineStyles.mainText}>What to exchange?</Text>
       <View style={inlineStyles.buttonContainer}>
         <TouchableOpacity style={inlineStyles.button1}>
-          <Text style={inlineStyles.buttonText}>Item name here..</Text>
+          <TextInput style={inlineStyles.buttonText} placeholder="Title" />
         </TouchableOpacity>
-        <TouchableOpacity style={inlineStyles.button2}>
-          <Text style={inlineStyles.buttonText}>Add some pictures</Text>
-        </TouchableOpacity>
+        {!image ? (
+          <TouchableOpacity style={inlineStyles.button2} onPress={pickImage}>
+            <Text style={inlineStyles.buttonText}>Add a picture</Text>
+          </TouchableOpacity>
+        ) : (
+          <Image source={{ uri: image }} style={[inlineStyles.button2, { height: 300, }]} />
+        )}
         <TouchableOpacity style={inlineStyles.button3}>
           <Text style={inlineStyles.buttonText}>Describe your product..</Text>
         </TouchableOpacity>
@@ -31,7 +55,6 @@ const Exchange = () => {
         <TouchableOpacity style={inlineStyles.button4}>
           <Text style={inlineStyles.buttonText}>🔥Add for exchange</Text>
         </TouchableOpacity>
-
       </View>
       <StatusBar style="auto" />
     </ScrollView>
@@ -78,7 +101,7 @@ const inlineStyles = {
     fontSize: 15,
     color: "#865012",
   },
-  
+
   buttonContainer: {
     flexDirection: "column",
     marginTop: 20,
@@ -90,11 +113,11 @@ const inlineStyles = {
     paddingHorizontal: 100,
     borderRadius: 30,
     marginHorizontal: 10,
-    marginBottom: 10, 
+    marginBottom: 10,
   },
   button2: {
     backgroundColor: "white",
-    paddingVertical: 70, 
+    paddingVertical: 70,
     paddingHorizontal: 40,
     borderRadius: 30,
     marginHorizontal: 10,
@@ -102,11 +125,11 @@ const inlineStyles = {
   },
   button3: {
     backgroundColor: "white",
-    paddingVertical: 30, 
+    paddingVertical: 30,
     paddingHorizontal: 40,
     borderRadius: 30,
     marginHorizontal: 10,
-    marginBottom: 10, 
+    marginBottom: 10,
   },
   button4: {
     backgroundColor: "#865012",
@@ -116,7 +139,7 @@ const inlineStyles = {
     borderRadius: 30,
     marginHorizontal: 10,
     marginTop: 5,
-    marginBottom: 10, 
+    marginBottom: 10,
   },
   buttonText: {
     fontSize: 16,

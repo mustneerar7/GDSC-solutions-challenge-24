@@ -31,6 +31,12 @@ const Profile = ({ navigation }) => {
     getUser();
   }, []);
 
+  React.useEffect(() => {
+    if(currentUser) {
+      console.log(currentUser)
+    }
+  }, [currentUser]);
+
   // Handle the logout action
   const handleLogout = async () => {
     AsyncStorage.removeItem("user");
