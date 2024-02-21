@@ -13,15 +13,22 @@ const Complete = () => {
 
   return (
     <ScrollView contentContainerStyle={inlineStyles.container}>
-      <View style={inlineStyles.headerContainer}>
-      </View>
+      <View style={inlineStyles.headerContainer}></View>
       <Text style={inlineStyles.mainText}>Congratulations!</Text>
-      <Text style={inlineStyles.productText}>Product Added.</Text>
+      <Text style={inlineStyles.productText}>Request sent</Text>
       <Image
         style={inlineStyles.logo}
         source={require("../../assets/party-popper.png")}
       />
-      <TouchableOpacity onPress={handleButtonPress} style={inlineStyles.button}>
+      <TouchableOpacity
+        style={inlineStyles.button}
+        onPress={() =>
+          navigation.reset({
+            index: 0,
+            routes: [{ name: "Home" }],
+          })
+        }
+      >
         <Text style={inlineStyles.buttonText}> 🔥 Awesome </Text>
       </TouchableOpacity>
 

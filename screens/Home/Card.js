@@ -1,11 +1,12 @@
 import React from "react";
-import { ImageBackground, Text, View, Dimensions } from "react-native";
+import { ImageBackground, Text, View, Dimensions, Pressable } from "react-native";
 
 import styles from "../../configs/styles";
 
-const Card = (item) => {
+const Card = (item, onPressCall) => {
   return (
-    <View
+    <Pressable
+      onPress={()=>onPressCall(item)}
       style={{
         width: Dimensions.get("window").width,
         height: Dimensions.get("window").height / 1.48,
@@ -53,7 +54,7 @@ const Card = (item) => {
           </Text>
         </View>
       </ImageBackground>
-    </View>
+    </Pressable>
   );
 };
 

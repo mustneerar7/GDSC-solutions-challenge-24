@@ -14,7 +14,7 @@ import styles from "../../configs/styles";
 import { Card } from "./Card";
 import { dummyData } from "./dummyData";
 
-const ProductDetails = () => {
+const ProductDetails = ({navigation}) => {
   return (
       <ScrollView style={[inlineStyles.container]}>
          <FlatList
@@ -33,6 +33,7 @@ const ProductDetails = () => {
          </Text>
 
         <TouchableOpacity
+         onPress={() => navigation.navigate("Complete")}
           style={[inlineStyles.buttonContainer, inlineStyles.exchangeButton]}
         >
           <Text style={inlineStyles.buttonText}>🔥</Text>

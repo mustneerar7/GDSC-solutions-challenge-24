@@ -14,7 +14,12 @@ import styles from "../../configs/styles";
 import { Card } from "./Card";
 import { dummyData } from "./dummyData";
 
-const Home = () => {
+const Home = ({navigation}) => {
+
+  const onPressCallback = (item) => {
+    navigation.navigate("ProductDetails");
+  }
+
   return (
       <ScrollView style={[inlineStyles.container]}>
         <View style={inlineStyles.headerContainer}>
@@ -30,7 +35,7 @@ const Home = () => {
 
         <FlatList
           data={dummyData}
-          renderItem={({ item }) => Card(item)}
+          renderItem={({ item }) => Card(item, onPressCallback)}
           keyExtractor={(item) => item.id.toString()}
           horizontal
           showsHorizontalScrollIndicator={false}
