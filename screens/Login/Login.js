@@ -74,6 +74,18 @@ const Login = ({ navigation }) => {
   React.useEffect(() => {
     if (userInfo) {
       AsyncStorage.setItem("user", JSON.stringify(userInfo));
+
+      fetch("http://192.168.100.89:4000/api/v1/user/create", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+
+        body: JSON.stringify({
+          userId: userInfo.uid,
+        })
+      });
+
       navigation.reset({
         index: 0,
         routes: [{ name: "Choice" }],

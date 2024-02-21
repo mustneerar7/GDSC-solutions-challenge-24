@@ -42,9 +42,9 @@ const Card = (item, onPressCall) => {
             <Text style={[styles.typography.h2, { color: "white" }]}>
               {item.title}
             </Text>
-            <Text style={[styles.typography.h2, { color: "white" }]}>
+            {/* <Text style={[styles.typography.h2, { color: "white" }]}>
               {item.rating} / 5
-            </Text>
+            </Text> */}
           </View>
           <Text style={[styles.typography.body, { color: "white" }]}>
             {item.postedBy}
